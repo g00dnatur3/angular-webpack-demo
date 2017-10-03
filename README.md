@@ -1,4 +1,4 @@
-Angular 1.6 + Webpack 2 + Bootstrap & Font-Awesome, Testing with Karma & Jasmine.
+* Angular 1.6 + Webpack 2 + Bootstrap & Font-Awesome, Testing with Karma & Jasmine.
 <br>
-I want to get back to full stack web development, this project represents me working towards that goal.
+* I want to get back to full stack web development, this project represents me working towards that goal.
 
