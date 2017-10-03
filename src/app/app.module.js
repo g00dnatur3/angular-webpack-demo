@@ -7,7 +7,7 @@ import './app.css';
 
 import student from './student/student.module.js'
 
-let app = () => {
+var app = () => {
   return {
     template: require('./app.html'),
     controller: 'AppCtrl',
