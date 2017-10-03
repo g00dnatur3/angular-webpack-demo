@@ -15,6 +15,10 @@ config.entry = {
   app: './src/app/app.module.js'
 };
 
+/**
+ * Should be an empty object if it's generating a test build
+ * Karma will set this when it's a test build
+ */
 config.output = isTest ? {} : {
   path: __dirname + '/dist',
   publicPath: 'http://localhost:8080/',

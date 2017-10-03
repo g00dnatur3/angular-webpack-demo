@@ -16,7 +16,7 @@ describe('app', () => {
       });
     });
 
-    it('should contain the starter url', () => {
+    it('should contain hello world', () => {
       expect(ctrl.helloWorld).toBe('Hello World');
     });
 
