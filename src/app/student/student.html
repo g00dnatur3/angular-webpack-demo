@@ -1,29 +1,15 @@
 <div>
+<form name="studentForm" class=""block>
 
-<form class="well">
+    <input type="text" name="email" ng-model="student.email" validate-email>
 
-    <input type="text" name="fname" ng-model="fname" placeholder="first name" /> <br/>       
-    <input type="text" name="lname" ng-model="lname" placeholder="last name" />
+    <label ng-messages="studentForm.email.$error">
 
-    <br /><br/>               
-    
-    <!-- <input type="button" value="add student" ng-click="addStudent()" /> -->
+        <p ng-message="format" class="error">invalid email format.</p>
+
+        <p ng-message="unique" class="error">email is not uunique.</p>
+
+    </label>
+
 </form>
-<br/>
-
-<!--
-I have {{friends.length}} friends. They are:
-<input type="search" ng-model="q" placeholder="filter students..." aria-label="filter students" />
-
-<br/>
-
-<table class="table">
-    <tr ng-repeat="student in students | filter:q as results">
-        <td>{{ student.firstName }}</td>
-        <td>{{ student.lastName }}</td>
-    </tr>
-</table>
-<div ng-if="results.length === 0">No Results Found</div>
--->
-
 </div>

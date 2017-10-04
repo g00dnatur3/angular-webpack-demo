@@ -1,30 +1,19 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import 'font-awesome/css/font-awesome.css';
-
-import angular from 'angular';
-
 import './app.css';
-
+import angular from 'angular';
+import home from './home/home.module.js'
 import student from './student/student.module.js'
 
-var app = () => {
+const app = () => {
   return {
-    template: require('./app.html'),
-    controller: 'AppCtrl',
-    controllerAs: 'app'
+    template: require('./app.html')
   }
 };
 
-class AppCtrl {
-  constructor() {
-    this.helloWorld = 'Hello World'
-  }
-}
-
 const MODULE_NAME = 'app';
 
-angular.module(MODULE_NAME, [student])
+angular.module(MODULE_NAME, [home, student])
   .directive('app', app)
-  .controller('AppCtrl', AppCtrl)
 
 export default MODULE_NAME;
