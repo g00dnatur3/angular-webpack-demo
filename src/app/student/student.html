@@ -1,15 +1,32 @@
-<div>
-<form name="studentForm" class=""block>
+<div class="container">
 
-    <input type="text" name="email" ng-model="student.email" validate-email>
+  <form name="studentForm" role="form">
 
-    <label ng-messages="studentForm.email.$error">
+    <div ng-class="{ 'has-error': studentForm.email.$invalid }" class="form-group">
 
-        <p ng-message="format" class="error">invalid email format.</p>
+      <label for="email" class="col-sm-1">Email</label>
 
-        <p ng-message="unique" class="error">email is not uunique.</p>
+      <div class="col-sm-7">
+        <input name="email" ng-model="student.email" type="email" class="form-control" placeholder="Email" validate-email>
+      </div>
 
-    </label>
+      <div class="col-sm-3" ng-messages="studentForm.email.$error">
+        <small ng-message="format" class="text-danger">
+          Invalid email format.
+        </small> 
+      </div>
 
-</form>
+    </div>
+
+  </form>
+
 </div>
+
+<!--
+<datepicker
+  date-format="MMMM d, y"
+  button-prev='<i class="fa fa-arrow-circle-left"></i>'
+  button-next='<i class="fa fa-arrow-circle-right"></i>'>
+      <input ng-model="student.birthDate" type="text" class="font-fontawesome font-light radius3" placeholder="&#xf073; Choose a date"/>
+  </datepicker>
+-->
