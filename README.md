@@ -8,6 +8,7 @@
 # Start
 
 > npm start
+
 open browser to localhost:8080
 
 # Test
