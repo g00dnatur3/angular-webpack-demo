@@ -1,23 +1,34 @@
+
 <div class="container">
 
-  <form name="studentForm" role="form">
+  <form name="studentForm" ng-submit="" novalidate>
 
-    <div ng-class="{ 'has-error': studentForm.email.$invalid }" class="form-group">
-
-      <label for="email" class="col-sm-1">Email</label>
-
-      <div class="col-sm-7">
-        <input name="email" ng-model="student.email" type="email" class="form-control" placeholder="Email" validate-email>
-      </div>
-
-      <div class="col-sm-3" ng-messages="studentForm.email.$error">
-        <small ng-message="format" class="text-danger">
-          Invalid email format.
-        </small> 
-      </div>
-
+    <!-- FIRST NAME -->
+    <div class="form-group" ng-class="{ 'has-error' : studentForm.firstName.$invalid && !studentForm.firstName.$pristine }">
+        <label>First Name</label>
+        <input type="text" name="firstName" class="form-control" ng-model="student.firstName" ng-minlength="3" ng-maxlength="20">
+        <p ng-show="studentForm.firstName.$error.minlength" class="help-block">First Name is too short.</p>
+        <p ng-show="studentForm.firstName.$error.maxlength" class="help-block">First Name is too long.</p>
     </div>
 
+    <!-- LAST NAME -->
+    <div class="form-group" ng-class="{ 'has-error' : studentForm.lastName.$invalid && !studentForm.lastName.$pristine }">
+        <label>Last Name</label>
+        <input type="text" name="lastName" class="form-control" ng-model="student.lastName" ng-minlength="3" ng-maxlength="20">
+        <p ng-show="studentForm.lastName.$error.minlength" class="help-block">Last Name is too short.</p>
+        <p ng-show="studentForm.lastName.$error.maxlength" class="help-block">Last Name is too long.</p>
+    </div>
+
+    <!-- EMAIL -->
+    <div class="form-group" ng-class="{ 'has-error': studentForm.email.$invalid }">
+      <label>Email</label>
+      <input type="email" name="email" class="form-control" ng-model="student.email" validate-email>
+      <p ng-show="studentForm.email.$error.format" class="help-block">Invalid email format.</p>
+      <p ng-show="studentForm.email.$error.unique" class="help-block">Email is not unique.</p>
+    </div>
+      
+    <button type="submit" class="btn btn-primary">Submit</button>
+      
   </form>
 
 </div>

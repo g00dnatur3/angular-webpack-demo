@@ -1,6 +1,5 @@
 import angular from 'angular';
 import ngRoute from 'angular-route';
-import ngMessages from 'angular-messages';
 
 import 'angularjs-datepicker/src/css/angular-datepicker.css';
 import 'angularjs-datepicker'
@@ -12,11 +11,16 @@ import StudentService from './student.service'
 // student controller
 class StudentCtrl {
   constructor(StudentService) {
-    this.status;
-    this.students = [];
+    this.students = StudentService.get();
   }
   addStudent() {
-
+    const student = StudentService.put({
+      email: this.email,
+      firstName: this.firstName,
+      lastName: this.lastName,
+      birthDate: this.birthDate
+    })
+    this.students.push(student);
   }
 }
 
@@ -34,7 +38,7 @@ const validateEmail = (StudentService) => {
       // https://toddmotto.com/moving-from-ng-model-parsers-to-ng-model-validates-ng-messages/
       ctrl.$validators.format = function(modelValue, viewValue) {
         const val = modelValue || viewValue;
-        return (!val) ? false : validateFormat(val);
+        return (!val || val.length === 0) ? true : validateFormat(val);
       }
       ctrl.$validators.unique = function(modelValue, viewValue) {
         const val = modelValue || viewValue;
@@ -46,7 +50,7 @@ const validateEmail = (StudentService) => {
 
 const MODULE_NAME = 'student';
 
-angular.module(MODULE_NAME, [ngRoute, ngMessages, '720kb.datepicker'])
+angular.module(MODULE_NAME, [ngRoute, '720kb.datepicker'])
   .controller('StudentCtrl', StudentCtrl)
   .config(routes)
   .service('StudentService', StudentService)
