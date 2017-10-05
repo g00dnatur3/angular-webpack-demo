@@ -1,5 +1,5 @@
 // validate email directive
-const validateEmail = (StudentService) => {
+const validateEmail = (StudentService, $q) => {
   function validateFormat(email) {
       var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       return re.test(email);
@@ -14,9 +14,19 @@ const validateEmail = (StudentService) => {
         const val = modelValue || viewValue;
         return (!val || val.length === 0) ? true : validateFormat(val);
       }
-      ctrl.$validators.unique = function(modelValue, viewValue) {
+
+
+
+      ctrl.$asyncValidators.unique = function(modelValue, viewValue) {
         const val = modelValue || viewValue;
-        return true;
+        return new Promise((resolve, reject) => {
+          StudentService.isEmailUnique(val, function(err, result) {
+            if (err || !result.unique) resolve($q.reject())
+            else {
+              resolve(result.unique)
+            }
+          })
+        });
       }
     }
   }

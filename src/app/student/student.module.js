@@ -12,17 +12,30 @@ import StudentService from './student.service'
 // student controller
 class StudentCtrl {
   constructor(StudentService) {
-    this._service = StudentService;
-    this.students = this._service.get();
+    const self = this;
+    self._service = StudentService;
+    self._service.get(function(err, students) {
+      if (err) console.log('get students error: ' +err) //maybe show error to user...
+      else {
+        console.log(students);
+        self.students = students;
+      }
+    });
   }
   addStudent() {
-    const student = this._service.put({
-      email: this.email,
-      firstName: this.firstName,
-      lastName: this.lastName,
-      birthDate: this.birthDate
+    const self = this;
+    self._service.put({
+      email: self.email,
+      firstName: self.firstName,
+      lastName: self.lastName,
+      birthDate: new Date(self.birthDate)
+    }, function(err, student) {
+      if (err) console.log('add student error: ' + err) //maybe show error to user...
+      else {
+        self.students.push(student);
+        console.log('add student success: ' + JSON.stringify(student));
+      }
     })
-    this.students.push(student);
   }
 }
 

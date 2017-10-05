@@ -1,22 +1,33 @@
 export default class StudentService {
 	constructor($http) {
-		//this.$http = $http
-		this.idGenerator = 0;
-		this.model = []; 
+		this.$http = $http
+		this.url = 'http://localhost:9000/student';
 	}
-	get() {
-		return this.model; // in-place of $http.get
+
+	handlers(onComplete) {
+		return [
+			function fulfilled(resp) {
+				onComplete(null, resp.data);
+			},
+			function refjected(resp) {
+				const err = {status: resp.status, data: resp.data};
+				onComplete(err);
+			}
+		]
 	}
-	put(student) {
-		student.id = this.idGenerator++;
-		this.model.push(student); // in-place of $http.put
-		return student;
+
+	get(onComplete) {
+		const promise = this.$http.get(this.url);
+		promise.then.apply(promise, this.handlers(onComplete));
 	}
-	isEmailUnique(email) {
-		if (!email) return false;
-		for (var i=0; i<this.model.length; i++) {
-			if (this.model.email === email) return false;
-		}
-		return true;
+
+	put(student, onComplete) {
+		const promise = this.$http.post(this.url, student);
+		promise.then.apply(promise, this.handlers(onComplete));
+	}
+
+	isEmailUnique(email, onComplete) {
+		const promise = this.$http.post(this.url + '/emailunique', {email: email});
+		promise.then.apply(promise, this.handlers(onComplete));
 	}
 }
