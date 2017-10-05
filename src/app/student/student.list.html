@@ -1,6 +1,9 @@
 <div class="container">
   <h2 class="margin-bot-10">List of Students</h2>
-         
+
+  <label>Search Any: <input ng-model="q.$"></label><br>
+  <label>Search First Name: <input ng-model="q.firstName"> </label><br>
+
   <table class="table table-striped">
 
     <thead>
@@ -13,7 +16,7 @@
     </thead>
 
     <tbody>
-      <tr ng-repeat="s in student.list">
+      <tr ng-repeat="s in student.list | filter:q:strict">
           <td>{{ s.firstName }}</td>
           <td>{{ s.lastName }}</td>
           <td>{{ s.email }}</td>

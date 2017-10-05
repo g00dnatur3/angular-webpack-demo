@@ -14,16 +14,13 @@ const validateEmail = (StudentService, $q) => {
         const val = modelValue || viewValue;
         return (!val || val.length === 0) ? true : validateFormat(val);
       }
-
-
-
       ctrl.$asyncValidators.unique = function(modelValue, viewValue) {
         const val = modelValue || viewValue;
-        return new Promise((resolve, reject) => {
+        return $q(function(resolve, reject) {
           StudentService.isEmailUnique(val, function(err, result) {
-            if (err || !result.unique) resolve($q.reject())
+            if (err || !result.unique) reject('email not unique: ' + val);
             else {
-              resolve(result.unique)
+              resolve('email is unique: ' + val);
             }
           })
         });
