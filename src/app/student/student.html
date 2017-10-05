@@ -1,57 +1,8 @@
-<div class="col-sm-6 col-sm-offset-3">
-  <div class="panel panel-default">
-
-    <div class="panel-heading">Add Student</div>
-
-    <div class="panel-body">
-
-    <!-- ================ -->
-    <!-- ADD STUDENT FORM -->
-    <!-- ================ -->
-    <form name="studentForm" ng-submit="student.addStudent()" novalidate>
-
-      <!-- FIRST NAME -->
-      <div class="form-group" ng-class="{ 'has-error' : studentForm.firstName.$invalid && !studentForm.firstName.$pristine }">
-          <label>First Name</label>
-          <input type="text" name="firstName" class="form-control" ng-model="student.firstName" ng-minlength="3" ng-maxlength="20" ng-required="true" />
-          <p ng-show="studentForm.firstName.$error.minlength" class="help-block">First Name is too short.</p>
-          <p ng-show="studentForm.firstName.$error.maxlength" class="help-block">First Name is too long.</p>
-      </div>
-
-      <!-- LAST NAME -->
-      <div class="form-group" ng-class="{ 'has-error' : studentForm.lastName.$invalid && !studentForm.lastName.$pristine }">
-          <label>Last Name</label>
-          <input type="text" name="lastName" class="form-control" ng-model="student.lastName" ng-minlength="3" ng-maxlength="20" ng-required="true" />
-          <p ng-show="studentForm.lastName.$error.minlength" class="help-block">Last Name is too short.</p>
-          <p ng-show="studentForm.lastName.$error.maxlength" class="help-block">Last Name is too long.</p>
-      </div>
-
-      <!-- EMAIL -->
-      <div class="form-group" ng-class="{ 'has-error': studentForm.email.$invalid && !studentForm.email.$pristine}">
-        <label>Email</label>
-        <input type="email" name="email" class="form-control" ng-model="student.email" validate-email ng-required="true"/>
-        <p ng-show="studentForm.email.$error.format" class="help-block">Invalid email format.</p>
-        <p ng-show="studentForm.email.$error.unique" class="help-block">Email is not unique.</p>
-      </div>
-
-      <!-- BIRTH DATE -->
-      <div>
-        <label>Birth Date</label>
-        <datepicker class="form-group" date-format="MMMM d, y" button-prev='<i class="fa fa-arrow-circle-left"></i>' button-next='<i class="fa fa-arrow-circle-right"></i>'>
-          <input name="birthDate" ng-model="student.birthDate" type="text" class="form-control font-fontawesome" placeholder="&#xf073; Choose a date" ng-required="true" />
-        </datepicker>
-      </div>
-
-      <!-- <button type="submit" class="margin-top-10 btn btn-primary" test>Submit</button> -->
-
-      <submit-button />
-
-      <!-- 
-        <button ng-class="{ 'disabled': studentForm.$pristine }" type="submit" class="margin-top-10 btn btn-primary">Submit</button> -->
-
-    </form>      
-
-    </div><!-- // panel body -->
-
-  </div><!-- // panel -->
+<div class="container">
+  <div class="col-sm-3 col-sm-offset-1 jumbotron">
+	<div class="btn-group-vertical">
+	  <a href="#!student-add" class='margin-bot-10 btn btn-primary' role="button">Add Student</a>
+	  <a href="#" class='btn btn-info' role="button">View Students</a>
+	</div>
+  </div>
 </div>
