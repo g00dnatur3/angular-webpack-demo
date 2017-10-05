@@ -21,7 +21,7 @@ export default class StudentService {
 		promise.then.apply(promise, this.handlers(onComplete));
 	}
 
-	put(student, onComplete) {
+	post(student, onComplete) {
 		const promise = this.$http.post(this.url, student);
 		promise.then.apply(promise, this.handlers(onComplete));
 	}

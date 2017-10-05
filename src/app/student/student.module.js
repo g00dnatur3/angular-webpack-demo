@@ -7,7 +7,9 @@ import 'angularjs-datepicker'
 import submitButton from '../common/directives/submitButton.js'
 import validateEmail from '../common/directives/validateEmail.js'
 import routes from './student.routes'
-import StudentService from './student.service'
+
+//import StudentService from './student.service'
+import StudentService from './mock/student.mock.service'
 
 // student controller
 class StudentCtrl {
@@ -25,7 +27,7 @@ class StudentCtrl {
   }
   addStudent() {
     const self = this;
-    self._service.put({
+    self._service.post({
       email: self.email,
       firstName: self.firstName,
       lastName: self.lastName,
