@@ -1,0 +1,31 @@
+<div class="container">
+  <h2 class="margin-bot-10">List of Students</h2>
+         
+  <table class="table table-striped">
+
+    <thead>
+      <tr>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Email</th>
+        <th>Birth Date</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr ng-repeat="s in student.list">
+          <td>{{ s.firstName }}</td>
+          <td>{{ s.lastName }}</td>
+          <td>{{ s.email }}</td>
+          <td>{{ s.birthDate | date : "yyyy-MM-dd" }}</td>
+      </tr>
+    </tbody>
+
+  </table>
+
+  <!-- correct -->
+  <div class="center-block"> 
+      <a href="#!student" class='btn btn-info' role="button">Go Back</a>
+  </div>
+
+</div>

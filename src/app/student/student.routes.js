@@ -13,4 +13,10 @@ export default function routes($routeProvider) {
     controller: 'StudentCtrl',
     controllerAs: 'student'
   })
+  .when('/student-list', {
+    template: require('./student.list.html'),
+    css: require('./student.css'),
+    controller: 'StudentCtrl',
+    controllerAs: 'student'
+  })
 }

@@ -11,14 +11,15 @@ import StudentService from './student.service'
 
 // student controller
 class StudentCtrl {
-  constructor(StudentService) {
+  constructor(StudentService, $location) {
     const self = this;
+    self.$location = $location;
     self._service = StudentService;
     self._service.get(function(err, students) {
-      if (err) console.log('get students error: ' +err) //maybe show error to user...
+      if (err) console.log('get students error: ' + err) //maybe show error to user...
       else {
-        console.log(students);
-        self.students = students;
+        //console.log(students);
+        self.list = students;
       }
     });
   }
@@ -32,8 +33,9 @@ class StudentCtrl {
     }, function(err, student) {
       if (err) console.log('add student error: ' + err) //maybe show error to user...
       else {
-        self.students.push(student);
+        self.list.push(student);
         console.log('add student success: ' + JSON.stringify(student));
+        self.$location.path('/student'); //redirect
       }
     })
   }
